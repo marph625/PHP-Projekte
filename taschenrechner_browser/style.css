@@ -1,0 +1,17 @@
+* {
+    font-family: Verdana;
+    font-size: 11pt;
+}
+
+input,
+button {
+    padding: 8px;
+}
+
+select,
+option {
+    text-align: center;
+    border: 2px solid black;
+    padding: 8px;
+    background-image: linear-gradient(rgb(254, 130, 130), rgb(130, 130, 255));
+}

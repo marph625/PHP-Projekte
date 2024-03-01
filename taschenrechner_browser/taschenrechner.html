@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taschenrechner</title>
+    <!--Verknüpfung mit der style.css-->
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <!--
+    Parameter zur Übergabe an ein php-Script
+    Wie soll der Request erfolgen? POST = HTTP-Request
+    -->
+
+    <form method="post" action="berechnung.php">
+        <b>Unsere Rechenaufgabe</b><br><br>
+        <!--Eingabe für die erste Zahl mit der Option 'required' (Pflichteingabe)-->
+        <input name="zahl1" required>
+        <!--Mit Select -> Dropdown-Menu zur Auswahl der Rechenoperation
+        +,-,*,/ wird mit den Optionen definiert-->
+        <select name="rz">
+            <option value="+">plus</option>
+            <option value="-">minus</option>
+            <option value="*">mal</option>
+            <option value="/">geteilt durch</option>
+        </select>
+        <input name="zahl2" required><br><br>
+        <input type="submit" name="submit" value="Rechnen">
+    </form>
+</body>
+
+</html>

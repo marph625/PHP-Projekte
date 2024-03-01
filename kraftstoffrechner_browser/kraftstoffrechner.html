@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tankrechner</title>
+</head>
+
+<body>
+    <form method="post" action="berechnung.php">
+        <b>Ihr persönlicher Kraftstoffrechner</b>
+        <p>Mit diesem Formular werden die Kraftstoffkosten Ihres PKWs für einen Monat ermittelt.</p>
+        <p>Bitte füllen Sie die nachfolgenden Eingabefelder aus.</p>
+
+        <select name="kraftstoff">
+            <option value="Diesel">Diesel</option>
+            <option value="Super E10">Super E10</option>
+            <option value="Super">Super</option>
+            <option value="Super+">Super+</option>
+        </select>
+        <label for="kraftstoff">Kraftstoffsorte</label><br>
+        <select name="tankmonat">
+            <option value="Januar">Januar</option>
+            <option value="Februar">Februar</option>
+            <option value="März">März</option>
+            <option value="April">April</option>
+            <option value="Mai">Mai</option>
+            <option value="Juni">Juni</option>
+            <option value="Juli">Juli</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="Oktober">Oktober</option>
+            <option value="November">November</option>
+            <option value="Dezember">Dezember</option>
+        </select>
+        <label for="tankmonat">Tankmonat</label><br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nr</th>
+                    <th>Tankfüllung in Liter</th>
+                    <th>Zahlbetrag in €</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><input type="text" name="tankfuellung1" required></td>
+                    <td><input type="text" name="zahlbetrag1" required></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><input type="text" name="tankfuellung2" required></td>
+                    <td><input type="text" name="zahlbetrag2" required></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><input type="text" name="tankfuellung3" required></td>
+                    <td><input type="text" name="zahlbetrag3" required></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><input type="text" name="tankfuellung4" required></td>
+                    <td><input type="text" name="zahlbetrag4" required></td>
+                </tr>
+            </tbody>
+        </table>
+        <input type="submit" name="submit_mwst0" value="Berechnen ohne MwSt">
+        <input type="submit" name="submit_mwst1" value="Berechnen mit MwSt">
+        <input type="reset" name="zuruecksetzen" value="Zurücksetzen"> <!--type reset macht genau das was es sagt-->
+    </form>
+</body>
+
+</html>
