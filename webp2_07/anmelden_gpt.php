@@ -15,16 +15,18 @@ if (isset($_POST['name'], $_POST['password'])) {
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
         // Soll SQL-Injections verhindern
-        $select = $conn->prepare("SELECT * FROM kunden WHERE name = :name");
+        $select = $conn->prepare("SELECT name, password FROM kunden WHERE name = :name");
         $select->bindParam(':name', $kunden_name);
         $select->execute();
-        $user = $select->fetch(PDO::FETCH_ASSOC);
+        $dbpw = $select->fetchAll()[0]['password'];
+        print_r($dbpw[0]['password']);
     
         // password_verify wird genutzt, um Passwort 'sicher' zu vergleichen
-        if ($user && password_verify($kunden_password, $user['password'])) {
+        if ($user && password_verify($kunden_password, $dbpw)) {
             echo "Login erfolgreich";
         } else {
             echo "Zugang verweigert. Benutzername oder Passwort falsch";
+            #var_dump($user);
         }
     
     } catch (PDOException $e) {
