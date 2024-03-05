@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
     <meta charset="UTF-8">
@@ -36,8 +36,25 @@
 
 
             if ($kunden_name == $dbName && password_verify($kunden_password, $dbPassword)) {
-                echo "Login erfolgreich!<br>";
+                echo "<!DOCTYPE html>";
+                echo "<html lang='de'>";
+                echo "<head>";
+                echo     "<meta charset='UTF-8'>";
+                echo     "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
+                echo     "<title>Login</title>";
+                echo "</head>";
+                echo "<body>";
+                echo     "<form action='verarbeitung.php' method='post'>";
+                echo         "<input type='text' name='description'>Beschreibung<br>";
+                echo         "<input type='file' name='file'>Datei<br>";
+                echo         "<button type='submit'>Datei hochladen</button><br>";
+                echo     "</form>";
+                echo "</body>";
+                echo "</html>";             
+
+
             } else {
+                // Formular taucht trotzdem auf, was noch gefixt werden muss
                 echo "!!!ZUGANG VERWEIGERT!!!<br>";
             }
 
@@ -47,11 +64,6 @@
             echo "Verbindung fehlgeschlagen<br>";
         }
     ?>
-    <form action="verarbeitung.php" method="post">
-        <input type="text" name="description">Beschreibung<br>
-        <input type="file" name="file">Datei<br>
-        <button type="submit">Datei hochladen</button><br>
-    </form>
 </body>
 
 </html>
