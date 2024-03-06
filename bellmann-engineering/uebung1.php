@@ -3,7 +3,7 @@
 $studentscores = array(
     "Megumi" => 1,
     "Yuji" => 6,
-    "Nakami" => 4,
+    "Nobara" => 4,
     "Satoru" => 5,
     "Aoi" => 3,
     "Kento" => 2,
@@ -27,3 +27,47 @@ foreach ($passFail as $k => $v) {
 }
 
 // Aufgabe 6
+
+print_r($studentscores);
+print_r($passFail);
+echo "\n\n";
+
+$counter_bestanden = 0;
+$counter_durchgefallen = 0;
+$counter_gesamtnote = 0;
+
+for ($i = 0; $i < count($passFail); $i++) {
+    $key = array_keys($passFail)[$i];
+    $value = array_values($passFail)[$i];
+    if ($value == " hat bestanden") {
+        $counter_bestanden++;
+        $counter_gesamtnote += $studentscores[$key];
+    } else {
+        $counter_durchgefallen++;
+    }
+}
+
+echo "Die Anzahl der Schüler, die bestanden haben, beträgt: ".$counter_bestanden;
+echo "\nDie durchschnittliche Gesamtnote der Schüler, die bestanden haben, lautet: ".$counter_gesamtnote / $counter_bestanden;
+echo "\nDie Anzahl der Schüler, die durchgefallen sind, beträgt: ".$counter_durchgefallen;
+
+// Aufgabe 7
+
+$i = 0;
+$counter_failed = 0;
+
+    while ($i < count($passFail)) {
+        $key = array_keys($passFail)[$i];
+        $value = array_values($passFail)[$i];
+        if ($value == " ist durchgefallen" || $value == " hat keine Note") {
+            $counter_failed++;
+            if ($counter_failed == 8) {
+                break;
+            }
+        }
+        $i++;
+    }
+
+
+echo "\nSo viele Leute müssen nachsitzen: ".$counter_failed;
+echo "\ncounter_failed = ".$counter_failed."\nwhile_counter = ".$i;
