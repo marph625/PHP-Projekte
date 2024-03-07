@@ -19,7 +19,7 @@ foreach ($studentscores as $key => $value) {
     
 }
 
-print_r($passFail);
+/* print_r($passFail); */
 
 // Aufgabe 5
 foreach ($passFail as $k => $v) {
@@ -28,8 +28,8 @@ foreach ($passFail as $k => $v) {
 
 // Aufgabe 6
 
-print_r($studentscores);
-print_r($passFail);
+/* print_r($studentscores);
+print_r($passFail); */
 echo "\n\n";
 
 $counter_bestanden = 0;
@@ -46,6 +46,8 @@ for ($i = 0; $i < count($passFail); $i++) {
         $counter_durchgefallen++;
     }
 }
+
+
 
 echo "Die Anzahl der Schüler, die bestanden haben, beträgt: ".$counter_bestanden;
 echo "\nDie durchschnittliche Gesamtnote der Schüler, die bestanden haben, lautet: ".$counter_gesamtnote / $counter_bestanden;
@@ -71,3 +73,6 @@ $counter_failed = 0;
 
 echo "\nSo viele Leute müssen nachsitzen: ".$counter_failed;
 echo "\ncounter_failed = ".$counter_failed."\nwhile_counter = ".$i;
+
+print_r($key);
+print_r($value);
