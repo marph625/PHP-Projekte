@@ -1,9 +1,10 @@
 <?php 
 session_start();
 
-$_SESSION;
+include("verbindung.php");
+include("funktionen.php");
 
-
+$user_data = check_login($con);
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +21,7 @@ $_SESSION;
     <h1>Dies ist die Index-Seite</h1>
 
     <br>
-    Hallo, Benutzer!
+    Hallo, <?php echo $user_data['benutzer_name']?>
 </body>
 
 </html>
