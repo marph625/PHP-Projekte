@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 include("verbindung.php");
@@ -14,14 +14,26 @@ $user_data = check_login($con);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projektwebsite</title>
+    <style>
+    body {
+        background-color: lightgrey;
+    }
+    </style>
 </head>
 
 <body>
     <a href="abmelden.php">Abmelden</a>
-    <h1>Dies ist die Index-Seite</h1>
+    <center>
+        <h1>Dies ist die Index-Seite für angemeldete Nutzer</h1>
+    </center>
 
     <br>
-    Hallo, <?php echo $user_data['benutzer_name']?>
+    <center>
+        <h2>
+            Hallo, <?php echo $user_data['benutzer_name'] ?>
+        </h2>
+    </center>
+
 </body>
 
 </html>

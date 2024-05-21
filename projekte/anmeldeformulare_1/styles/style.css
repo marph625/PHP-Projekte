@@ -1,0 +1,27 @@
+body {
+    background-color: lightgrey;
+}
+
+#text {
+    height: 25px;
+    border-radius: 5px;
+    padding: 4px;
+    border: solid, thin #aaa;
+    width: 100%;
+}
+
+#button {
+    padding: 10px;
+    width: 100px;
+    background-color: white;
+    border: none;
+}
+
+#box {
+    background-color: lightblue;
+    margin: auto;
+    width: 300px;
+    padding: 20px;
+    border: 1px solid blue;
+    border-radius: 10%;
+}
