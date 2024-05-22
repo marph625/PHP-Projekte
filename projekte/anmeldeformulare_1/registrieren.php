@@ -8,6 +8,7 @@ include("funktionen.php");
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $user_name = $_POST['benutzer_name'];
     $password = $_POST['passwort'];
+    //$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     if (!empty($user_name) && !empty($password) && !is_numeric($user_name)) {
 
@@ -17,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $user_id = random_num(20);
 
         // SQL-Query wird definiert
-        $query = "INSERT INTO benutzer (benutzer_id, benutzer_name, passwort) VALUES ('$user_id', '$user_name', '$password');";
+        $query = "INSERT INTO $tablename (benutzer_id, benutzer_name, passwort) VALUES ('$user_id', '$user_name', '$password');";
 
         // SQL-Query wird nach Datenbankverbindung ausgeführt
         mysqli_query($con, $query);

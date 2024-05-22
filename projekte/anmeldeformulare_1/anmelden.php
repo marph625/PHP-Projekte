@@ -11,11 +11,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (!empty($user_name) && !empty($password) && !is_numeric($user_name)) {
 
         // Benutzerdaten aus Datenbank lesen
-        $query = "SELECT * FROM benutzer WHERE benutzer_name = '$user_name' LIMIT 1";
+        $query = "SELECT * FROM $tablename WHERE benutzer_name = '$user_name' LIMIT 1";
         $result = mysqli_query($con, $query);
 
+        // Gibt es $result?
         if ($result) {
 
+            // Gibt es $result und mindestens einen Datensatz?
             if ($result && mysqli_num_rows($result) > 0) {
 
                 // Benutzerdaten werden in einem assoziativen Array gespeichert
@@ -24,7 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 if ($user_data['passwort'] === $password) {
 
                     // Wenn es ein result gibt, wird überprüft, ob es einen Datensatz in der Tabelle 'benutzer' gibt
-                    // Wenn zudem das eingegebene Passwort mit dem gespeicherten Passwort aus der DB übereinstimmt,
+                    // Wenn zudem das eingegebene Passwort mit dem gespeicherten Passwort aus der DB
+                    // und die benutzer_id aus der Session mit der benutzer_id aus der Datenbank übereinstimmt,
                     // wird der Nutzer zur index.php weitergeleitet und die Session wird beendet
                     $_SESSION['benutzer_id'] = $user_data['benutzer_id'];
                     header("Location: index.php");
