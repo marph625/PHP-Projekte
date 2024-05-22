@@ -46,11 +46,11 @@ if (count($_POST) > 0) {
             ansonsten soll es leer bleiben
         -->
         <input type="text" name="username" placeholder="Benutzername"
-            value="<?= isset($_POST['username']) ? $_POST['username'] : ''; ?>"><br>
+            value="<?php isset($_POST['username']) ? $_POST['username'] : '';?>"><br>
         <input type="email" name="email" placeholder="Email"
-            value="<?= isset($_POST['email']) ? $_POST['email'] : ''; ?>"><br>
+            value="<?php isset($_POST['email']) ? $_POST['email'] : '';?>"><br>
         <input type="password" name="password" placeholder="Passwort"
-            value="<?= isset($_POST['password']) ? $_POST['password'] : ''; ?>"><br>
+            value="<?php isset($_POST['password']) ? $_POST['password'] : '';?>"><br>
         <input type="submit" value="Registrieren">
     </form>
 </body>

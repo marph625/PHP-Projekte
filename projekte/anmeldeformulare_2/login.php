@@ -37,9 +37,9 @@
         ?>
         <hr>
         <input type="email" name="email" placeholder="Email"
-            value="<?= isset($_POST['email']) ? $_POST['email'] : ''; ?>"><br>
+            value="<?php isset($_POST['email']) ? $_POST['email'] : '';?>"><br>
         <input type="password" name="password" placeholder="Passwort"
-            value="<?= isset($_POST['password']) ? $_POST['password'] : ''; ?>"><br>
+            value="<?php isset($_POST['password']) ? $_POST['password'] : '';?>"><br>
         <input type="submit" value="Einloggen">
     </form>
 </body>
