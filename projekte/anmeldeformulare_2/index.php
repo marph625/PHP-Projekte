@@ -1,3 +1,10 @@
+<?php
+
+    require "init.php";
+    check_login();
+
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 
