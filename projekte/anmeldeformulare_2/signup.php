@@ -49,7 +49,7 @@ if (count($_POST) > 0) {
             value="<?= isset($_POST['username']) ? $_POST['username'] : ''; ?>"><br>
         <input type="email" name="email" placeholder="Email"
             value="<?= isset($_POST['email']) ? $_POST['email'] : ''; ?>"><br>
-        <input type="text" name="password" placeholder="Passwort"
+        <input type="password" name="password" placeholder="Passwort"
             value="<?= isset($_POST['password']) ? $_POST['password'] : ''; ?>"><br>
         <input type="submit" value="Registrieren">
     </form>
