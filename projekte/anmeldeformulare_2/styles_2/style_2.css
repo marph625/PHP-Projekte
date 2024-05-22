@@ -1,17 +1,19 @@
 body {
-    background-color: white;
+    background-color: aliceblue;
 }
 
 #text {
     height: 25px;
     border-radius: 5px;
     padding: 4px;
+    margin-top: 10px;
     border: solid, thin #aaa;
     width: 100%;
 }
 
 #button {
     padding: 10px;
+    margin-top: 10px;
     width: 100px;
     background-color: white;
     border: none;
@@ -23,5 +25,5 @@ body {
     width: 300px;
     padding: 20px;
     border: 1px solid blue;
-    border-radius: 10px;
+    border-radius: 5px;
 }

@@ -24,14 +24,17 @@ if (count($_POST) > 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index Seite</title>
+    <link rel="stylesheet" href="styles_2/style_2.css">
 </head>
 
 <body>
     <?php include "header.php" ?><br>
     <h1>Registrierung</h1>
+    <hr>
 
-    <form method="post">
-        <?php
+    <div id="box">
+        <form method="post">
+            <?php
         if (isset($errors) && count($errors) > 0) {
             // Wenn es Fehler gibt, werden die Elemente des Arrays $errors als $error ausgegeben
             foreach ($errors as $error) {
@@ -39,20 +42,20 @@ if (count($_POST) > 0) {
             }
         }
         ?>
-        <hr>
-        <!--
+            <!--
             Ternary Operator wird benutzt, um eine kurze If-Anweisung zu realisieren.
             Wenn über $_POST Daten übergeben wurden, soll in dem Input-Feld das konkrete Datum ausgegeben werden,
             ansonsten soll es leer bleiben
         -->
-        <input type="text" name="username" placeholder="Benutzername"
-            value="<?php isset($_POST['username']) ? $_POST['username'] : '';?>"><br>
-        <input type="email" name="email" placeholder="Email"
-            value="<?php isset($_POST['email']) ? $_POST['email'] : '';?>"><br>
-        <input type="password" name="password" placeholder="Passwort"
-            value="<?php isset($_POST['password']) ? $_POST['password'] : '';?>"><br>
-        <input type="submit" value="Registrieren">
-    </form>
+            <input id="text" type="text" name="username" placeholder="Benutzername"
+                value="<?php isset($_POST['username']) ? $_POST['username'] : '';?>"><br>
+            <input id="text" type="email" name="email" placeholder="Email"
+                value="<?php isset($_POST['email']) ? $_POST['email'] : '';?>"><br>
+            <input id="text" type="password" name="password" placeholder="Passwort"
+                value="<?php isset($_POST['password']) ? $_POST['password'] : '';?>"><br>
+            <input id="button" type="submit" value="Registrieren">
+        </form>
+    </div>
 </body>
 
 </html>

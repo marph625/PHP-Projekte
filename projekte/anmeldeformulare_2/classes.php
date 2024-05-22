@@ -48,8 +48,8 @@ class User
 {
     // $errors wird an dieser Stelle nur innerhalb der Klasse User verwendet, deshalb protected
     protected $errors = array();
-    public function create($POST)
-    {
+
+    public function create($POST) {
         $this->errors = array();
         
         $username = $POST['username'];
@@ -81,7 +81,6 @@ class User
 
             // Gehashtes Passwort wird hier gespeichert
             $POST['password'] = hash("sha256", $POST['password']);
-            //$POST['password'] = password_hash($POST['password'], PASSWORD_DEFAULT);
             $query = "INSERT INTO users (username, password, email, date) VALUES (:username, :password, :email, :date);";
             $db = new DB();
             $db->write($query, $POST);

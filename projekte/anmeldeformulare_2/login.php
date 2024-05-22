@@ -21,13 +21,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Seite</title>
+    <link rel="stylesheet" href="styles_2/style_2.css">
 </head>
 
 <body>
     <?php include "header.php" ?><br>
     <h1>Login</h1>
-    <form method="post">
-        <?php
+    <hr>
+    <div id="box">
+        <form method="post">
+            <?php
         if (isset($errors) && count($errors) > 0) {
             // Wenn es Fehler gibt, werden die Elemente des Arrays $errors als $error ausgegeben
             foreach ($errors as $error) {
@@ -35,13 +38,13 @@
             }
         }
         ?>
-        <hr>
-        <input type="email" name="email" placeholder="Email"
-            value="<?php isset($_POST['email']) ? $_POST['email'] : '';?>"><br>
-        <input type="password" name="password" placeholder="Passwort"
-            value="<?php isset($_POST['password']) ? $_POST['password'] : '';?>"><br>
-        <input type="submit" value="Einloggen">
-    </form>
+            <input id="text" type="email" name="email" placeholder="Email"
+                value="<?php isset($_POST['email']) ? $_POST['email'] : '';?>"><br>
+            <input id="text" type="password" name="password" placeholder="Passwort"
+                value="<?php isset($_POST['password']) ? $_POST['password'] : '';?>"><br>
+            <input id="button" type="submit" value="Einloggen">
+        </form>
+    </div>
 </body>
 
 </html>

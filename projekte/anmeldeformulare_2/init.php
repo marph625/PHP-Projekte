@@ -1,4 +1,6 @@
 <?php
+// Startet die Session einmal und bindet functions.php und classes.php einmalig
+// init.php wird in signup.php, login.php, logout.php und index.php eingebunden
 session_start();
 
 require "functions.php";
