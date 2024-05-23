@@ -18,7 +18,10 @@
     <h1>Dies ist die Startseite</h1>
     <hr>
     <h2>
-        Hallo, <?php echo $_SESSION['hashed_user'] ?>
+        Hallo,
+        <?php // Der eingeloggte Benutzer aus der User-Klasse wird begrüßt
+        echo $_SESSION['hashed_user']
+        ?>
     </h2>
 </body>
 

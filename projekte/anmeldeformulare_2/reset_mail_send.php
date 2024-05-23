@@ -2,16 +2,24 @@
 
     require "init.php";
 
-    if (count($_POST) > 0) {
-        $User = new User();
-        $errors = $User->login($_POST);
+    $db = new DB();
 
-        if (is_array($errors) && count($errors) == 0) {
-            // Wenn keine Fehler gefunden wurden, wird der Nutzer zu login.php weitergeleitet
-            header("Location: index.php");
-            die;
-        }
+    if (isset($_POST['reset'])) {
+        $email = $_POST['email'];
+        $reset_token = md5(rand());
+
+        $sql = "UPDATE users SET reset_token = ? WHERE email = ?";
+        $stmt = $db->con->prepare($sql);
+        if ($stmt->execute([$reset_token, $email])) {
+            $reset_link = "http://localhost/marph/php/projekte/anmeldeformulare_2/reset_mail_send.php";
+            $reset_link .= '?email=' . $email;
+            $reset_link .= '&reset_token=' . $reset_token;
+            if (mail($email, 'Reset Password', $reset_link, "From: Administrator")) {
+                echo "E-Mail verschickt!";
+            }
+        } 
     }
+    
 ?>
 
 <!DOCTYPE html>
@@ -20,13 +28,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Seite</title>
+    <title>Passwort zurücksetzen</title>
     <link rel="stylesheet" href="styles_2/style_2.css">
 </head>
 
 <body>
     <?php include "header.php" ?><br>
-    <h1>Login</h1>
+    <h1>Passwort zurücksetzen</h1>
     <hr>
     <div id="box">
         <form method="post">
@@ -40,11 +48,8 @@
         ?>
             <input id="text" type="email" name="email" placeholder="Email"
                 value="<?php isset($_POST['email']) ? $_POST['email'] : '';?>"><br>
-            <input id="text" type="password" name="password" placeholder="Passwort"
-                value="<?php isset($_POST['password']) ? $_POST['password'] : '';?>"><br>
-            <input id="button" type="submit" value="Einloggen">
+            <input id="button" type="submit" value="Senden" name="reset">
         </form>
-        <a id="reset_password" href="reset_mail_send.php">Passwort vergessen</a>
     </div>
 </body>
 
