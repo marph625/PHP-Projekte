@@ -1,6 +1,7 @@
 <?php
 
     require "init.php";
+    include "mail.php";
 
     $db = new DB();
 
@@ -11,10 +12,10 @@
         $sql = "UPDATE users SET reset_token = ? WHERE email = ?";
         $stmt = $db->con->prepare($sql);
         if ($stmt->execute([$reset_token, $email])) {
-            $reset_link = "http://localhost/marph/php/projekte/anmeldeformulare_2/reset_mail_send.php";
+            $reset_link = "http://localhost/marph/php/projekte/anmeldeformulare_2/reset_pw.php";
             $reset_link .= '?email=' . $email;
             $reset_link .= '&reset_token=' . $reset_token;
-            if (mail($email, 'Reset Password', $reset_link, "From: Administrator")) {
+            if (send_mail($email, 'Reset Password', "Testmail mit reset-link: ".$reset_link)) {
                 echo "E-Mail verschickt!";
             }
         } 

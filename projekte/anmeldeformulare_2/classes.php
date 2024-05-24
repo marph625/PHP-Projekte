@@ -2,8 +2,7 @@
 
 class DB
 {
-    // $con wird an dieser Stelle nur innerhalb der Klasse User verwendet, deshalb protected
-    protected $con;
+    public $con;
 
     // Konstruktor
     function __construct() {
@@ -51,6 +50,7 @@ class DB
 
 class User
 {
+    // $errors wird nur innerhalb der User-Klasse verwendet
     protected $errors = array();
 
     // Methode zum Erstellen eines Users
