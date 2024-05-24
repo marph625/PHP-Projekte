@@ -2,7 +2,8 @@
 
 class DB
 {
-    public $con;
+    // $con wird an dieser Stelle nur innerhalb der Klasse User verwendet, deshalb protected
+    protected $con;
 
     // Konstruktor
     function __construct() {
@@ -50,7 +51,6 @@ class DB
 
 class User
 {
-    // $errors wird an dieser Stelle nur innerhalb der Klasse User verwendet, deshalb protected
     protected $errors = array();
 
     // Methode zum Erstellen eines Users
@@ -79,7 +79,7 @@ class User
 
 
         // Datenspeicherung
-
+        // Wenn es keine errors gibt, sollen die übergebenen Daten gespeichert werden
         if (count($this->errors) == 0) {
             $post_data['date'] = date("Y-m-d H:i:s");
             
@@ -88,8 +88,14 @@ class User
 
             // Gehashtes Passwort wird hier gespeichert
             $post_data['password'] = hash("sha256", $post_data['password']);
+            
+            // Um SQL-Injektionen vorzubeugen, werden an dieser Stelle benannte Parameter (:email, :password) verwendet
             $query = "INSERT INTO users (username, password, email, date) VALUES (:username, :password, :email, :date);";
+
+            // Datenbankobjekt wird erstellt
             $db = new DB();
+
+            // Daten werden über die write-Methode aus der DB-Klasse in die Tabelle 'users' in die Datenbank geschrieben
             $db->write($query, $post_data);
         }
         return $this->errors;
@@ -97,6 +103,7 @@ class User
 
     public function login($post_data) {
 
+        // Fehlermeldungen werden in einem Array gespeichert
         $this->errors = array();
         
         // Eingegebenes Passwort wird mit dem selben Algorithmus gehasht
@@ -104,15 +111,18 @@ class User
         // Auf diese Weise kann man selbst mit Datenbankzugriff nicht auf die Passwörter schließen
         $post_data['password'] = hash("sha256", $post_data['password']);
 
-        $query = "SELECT * FROM users WHERE email = :email && password = :password LIMIT 1;";
+        $query = "SELECT * FROM users WHERE email = :email AND password = :password LIMIT 1;";
         $db = new DB();
         $data = $db->read($query, $post_data);
 
+        // Wenn $data ein Array ist, soll der verifizierte Nutzer im $_SESSION Array gespeichert werden
         if (is_array($data)) {
             $_SESSION['hashed_user'] = $data[0]['username'];
         } else {
+            // Ansonsten wird eine spezifische Fehlermeldung ausgegeben
             $this->errors[] = "Falscher Benutzername und/oder falsches Passwort";
         }
+        // Existierende Fehlermeldungen werden zurückgegeben
         return $this->errors;
     }
 }

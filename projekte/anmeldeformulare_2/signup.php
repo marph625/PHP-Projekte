@@ -2,13 +2,16 @@
 require "init.php";
 
 if (count($_POST) > 0) {
-    // Wenn etwas über Post übergeben wurde
+    // Wenn dem Array $_POST etwas übergeben wurde
 
+    // Neues User-Objekt wird erstellt
     $User = new User();
+
+    // Mögliche errors werden über die create-Methode der User-Klasse in einem Array gespeichert
     $errors = $User->create($_POST);
 
     if (is_array($errors) && count($errors) == 0) {
-        // Wenn keine Fehler gefunden wurden, wird der Nutzer zu login.php weitergeleitet
+        // Wenn keine Fehler gefunden wurden, wird der Nutzer zu login.php weitergeleitet und die aktuelle Session wird beendet
         header("Location: login.php");
         die;
     }
@@ -44,7 +47,7 @@ if (count($_POST) > 0) {
         ?>
             <!--
             Ternary Operator wird benutzt, um eine kurze If-Anweisung zu realisieren.
-            Wenn über $_POST Daten übergeben wurden, soll in dem Input-Feld das konkrete Datum ausgegeben werden,
+            Wenn dem $_POST Array übergeben wurden, soll in dem Input-Feld das konkrete Datum ausgegeben werden,
             ansonsten soll es leer bleiben
         -->
             <input id="text" type="text" name="username" placeholder="Benutzername"

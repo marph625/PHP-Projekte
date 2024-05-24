@@ -1,4 +1,5 @@
 <?php
+// Es wird einmal überprüft, ob ein Nutzer eingeloggt ist
     require "init.php";
     check_login();
 ?>
