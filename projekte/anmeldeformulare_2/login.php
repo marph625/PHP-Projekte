@@ -44,7 +44,9 @@
                 value="<?php isset($_POST['password']) ? $_POST['password'] : '';?>"><br>
             <input id="button" type="submit" value="Einloggen">
         </form>
-        <a id="reset_password" href="reset_mail_send.php">Passwort vergessen</a>
+        <p id="reset">
+            <a href="reset_mail_send.php">Passwort vergessen</a>
+        </p>
     </div>
 </body>
 

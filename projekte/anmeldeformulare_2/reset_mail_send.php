@@ -3,14 +3,22 @@
     require "init.php";
     include "mail.php";
 
+    // Datenbankverbindung wird hergestellt
     $db = new DB();
 
     if (isset($_POST['reset'])) {
         $email = $_POST['email'];
+
+        // Zufällige Zahl wird in einen 128-bit Hashwert umgerechnet
         $reset_token = md5(rand());
 
-        $sql = "UPDATE users SET reset_token = ? WHERE email = ?";
-        $stmt = $db->con->prepare($sql);
+        // Query wird definiert und über Datenbankverbindung vorbereitet
+        // Wenn das Statement ausgeführt wird, werden Daten aus der execute-Funktion anstelle der '?' eingefügt
+        $query = "UPDATE users SET reset_token = ? WHERE email = ?";
+        $stmt = $db->con->prepare($query);
+
+        // Wenn die Ausführung des Queries klappt, wird ein reset-link erstellt
+        // und per send_mail-Funktion aus mail.php (PHP-Mailer) an die übergebene email-Adresse verschickt 
         if ($stmt->execute([$reset_token, $email])) {
             $reset_link = "http://localhost/marph/php/projekte/anmeldeformulare_2/reset_pw.php";
             $reset_link .= '?email=' . $email;

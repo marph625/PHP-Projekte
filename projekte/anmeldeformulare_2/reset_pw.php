@@ -1,24 +1,34 @@
 <?php
 
 include "init.php";
+
+// Datenbankverbindung wird hergestellt
 $db = new DB();
 
+// Wenn Daten per $_GET übergeben wurden, werden Sie in Variablen gespeichert
 if (isset($_GET['email']) && isset($_GET['reset_token'])) {
     $email = $_GET['email'];
     $reset_token = $_GET['reset_token'];
 }
 
-if (isset($_POST['reset'])) {
-    // Hat mit line 13 und 14 ein Problem
+// Wenn 'Bestätigen' geklickt wird, werden email und reset-token aus der URL in Variablen gespeichert
+// Neues Passwort wird über Formular gespeichert
+if (isset($_POST['confirm'])) {
     $email = $_GET['email'];
     $reset_token = $_GET['reset_token'];
+
+    // Eventuelle Leerzeichen werden entfernt
     $new_password = trim($_POST['new_password']);
     $confirm_password = trim($_POST['confirm_password']);
 
     if (!empty($new_password) && !empty($confirm_password)) {
         if ($new_password === $confirm_password) {
+
+            // Neues Passwort wird in der Datenbank gespeichert, reset-token wird entfernt
             $query = "UPDATE users SET password = ?, reset_token = null WHERE email = ? AND reset_token = ?";
             $stmt = $db->con->prepare($query);
+
+            // Passwort wird neu verschlüsselt
             if ($stmt->execute([hash("sha256", $_POST['new_password']), $email, $reset_token])) {
                 echo "Passwort erfolgreich geändert!";
             } else {
@@ -65,7 +75,7 @@ if (isset($_POST['reset'])) {
 
 
 
-            <input id="button" type="submit" value="Bestätigen" name="reset">
+            <input id="button" type="submit" value="Bestätigen" name="confirm">
         </form>
     </div>
 </body>

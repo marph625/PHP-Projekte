@@ -18,8 +18,8 @@ class DB
 
         // Prepare-Methode der PDO-Klasse wird benutzt, um SQL-Injektionen vorzubeugen bzw. zu verhindern
         // Hier werden auf Methoden der PDO-Klasse aufgerufen
-        $stm = $this->con->prepare($query);
-        $check = $stm->execute($data);
+        $stmt = $this->con->prepare($query);
+        $check = $stmt->execute($data);
 
         if ($check) {
             return true;
@@ -31,13 +31,13 @@ class DB
 
     public function read($query, $data = array()) {
 
-        $stm = $this->con->prepare($query);
-        $check = $stm->execute($data);
+        $stmt = $this->con->prepare($query);
+        $check = $stmt->execute($data);
 
         if ($check) {
             
             // Holt Datensatz und speichert ihn in einem assoziativen Array
-            $rows = $stm->fetchAll(PDO::FETCH_ASSOC);
+            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             // Wenn $rows ein Array ist und größer als 0 ist, soll es zurückgegeben werden
             if (is_array($rows) && count($rows) > 0) {
@@ -57,7 +57,7 @@ class User
     public function create($post_data) {
         $this->errors = array();
         
-        // Benutzer übergibt per 
+        // Benutzer übergibt per Eingabefeld seine Daten
         $username = $post_data['username'];
         $email = $post_data['email'];
         $password = $post_data['password'];
