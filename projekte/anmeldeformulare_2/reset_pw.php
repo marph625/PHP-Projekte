@@ -14,9 +14,7 @@ if (isset($_GET['email']) && isset($_GET['reset_token'])) {
 // Wenn 'Bestätigen' geklickt wird, werden email und reset-token aus der URL in Variablen gespeichert
 // Neues Passwort wird über Formular gespeichert
 if (isset($_POST['confirm'])) {
-    $email = $_GET['email'];
-    $reset_token = $_GET['reset_token'];
-
+    
     // Eventuelle Leerzeichen werden entfernt
     $new_password = trim($_POST['new_password']);
     $confirm_password = trim($_POST['confirm_password']);
