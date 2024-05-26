@@ -1,5 +1,7 @@
 <?php
 
+// DATENBANK-KLASSE
+
 class DB
 {
     public $con;
@@ -8,6 +10,7 @@ class DB
     function __construct() {
         $string = "mysql:host=localhost;dbname=hash_db";
         
+        // Objekt der PDO-Klasse wird erzeugt
         // Benutzer = root, passwort ist leer
         $this->con = new PDO($string, "root", "");
     }
@@ -47,6 +50,8 @@ class DB
         return false;
     }
 }
+
+// USER-KLASSE
 
 class User
 {
