@@ -11,8 +11,7 @@ if (isset($_GET['email']) && isset($_GET['reset_token'])) {
     $reset_token = $_GET['reset_token'];
 }
 
-// Wenn 'Bestätigen' geklickt wird, werden email und reset-token aus der URL in Variablen gespeichert
-// Neues Passwort wird über Formular gespeichert
+// Wenn 'Bestätigen' geklickt wird, werden neues Passwort und dessen Bestätigung über Formular in Variablen gespeichert
 if (isset($_POST['confirm'])) {
     
     // Eventuelle Leerzeichen werden entfernt
