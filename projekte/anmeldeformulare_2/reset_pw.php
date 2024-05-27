@@ -18,7 +18,8 @@ if (isset($_POST['confirm'])) {
     $new_password = trim($_POST['new_password']);
     $confirm_password = trim($_POST['confirm_password']);
 
-    if (!empty($new_password) && !empty($confirm_password)) {
+    // Passwortfelder dürfen nicht leer sein. Neues Passwort muss ebenfalls mindestens 4 Zeichen lang sein
+    if (!empty($new_password) && !empty($confirm_password) && strlen($new_password) > 3) {
         if ($new_password === $confirm_password) {
 
             // Neues Passwort wird in der Datenbank gespeichert, reset-token wird entfernt
@@ -35,7 +36,7 @@ if (isset($_POST['confirm'])) {
             echo "Die Passwörter stimmen nicht überein";
         }
     } else {
-        echo "Bitte füllen Sie alle Felder aus";
+        echo "Bitte füllen Sie alle Felder aus. Das Passwort muss mindestens 4 Zeichen lang sein";
     }
 
 }
@@ -69,8 +70,6 @@ if (isset($_POST['confirm'])) {
             <input id="text" type="password" name="new_password" placeholder="Neues Passwort"><br>
 
             <input id="text" type="password" name="confirm_password" placeholder="Neues Passwort bestätigen"><br>
-
-
 
             <input id="button" type="submit" value="Bestätigen" name="confirm">
         </form>

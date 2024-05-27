@@ -122,7 +122,7 @@ class User
 
         // Wenn $data ein Array ist, soll der verifizierte Nutzer im $_SESSION Array gespeichert werden
         if (is_array($data)) {
-            $_SESSION['hashed_user'] = $data[0]['username'];
+            $_SESSION['verified_user'] = $data[0]['username'];
         } else {
             // Ansonsten wird eine spezifische Fehlermeldung ausgegeben
             $this->errors[] = "Falscher Benutzername und/oder falsches Passwort";

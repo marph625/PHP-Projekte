@@ -21,7 +21,7 @@
     <h2>
         Hallo,
         <?php // Der eingeloggte Benutzer aus der User-Klasse wird begrüßt
-        echo $_SESSION['hashed_user']
+        echo $_SESSION['verified_user']
         ?>
     </h2>
 </body>
