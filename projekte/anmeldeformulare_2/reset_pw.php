@@ -26,7 +26,7 @@ if (isset($_POST['confirm'])) {
             $query = "UPDATE users SET password = ?, reset_token = null WHERE email = ? AND reset_token = ?";
             $stmt = $db->con->prepare($query);
 
-            // Passwort wird neu verschlüsselt
+            // Neues Passwort wird verschlüsselt
             if ($stmt->execute([hash("sha256", $_POST['new_password']), $email, $reset_token])) {
                 echo "Passwort erfolgreich geändert!";
             } else {

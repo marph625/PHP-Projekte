@@ -9,7 +9,6 @@
         if (is_array($errors) && count($errors) == 0) {
             // Wenn keine Fehler gefunden wurden, wird der Nutzer zu login.php weitergeleitet
             header("Location: index.php");
-            die;
         }
     }
 ?>
