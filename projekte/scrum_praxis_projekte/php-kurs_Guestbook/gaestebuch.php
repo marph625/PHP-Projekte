@@ -13,8 +13,6 @@
 
     // Erfolgreiche Datenbankverbindung
 
-    echo "Verbindung mit der Datenbank war erfolgreich!";
-
     $db = mysqli_select_db($link, $datenbank);
 
     if (!$db) {
@@ -28,14 +26,14 @@
     $beitrag = trim(strip_tags($_POST["beitrag"] ?? ''));
 
     if (!empty($_POST['submit'])) {
-        echo "Formular wurde abgesendet und ist nicht leer.";
+        echo "\nFormular wurde abgesendet und ist nicht leer.";
     }
 
     // Verifizierung der übergebenen Daten
 
     $_errors = [];
 
-    if (empty($ersteller)) $_errors[] = "Name fehlt.";
+    if (empty($ersteller)) $_errors[] = "\nName fehlt.";
     if (empty($titel)) $_errors[] = "Titel fehlt.";
     if (empty($beitrag)) $_errors[] = "Beitrag fehlt.";
 
@@ -48,7 +46,7 @@
     } else {
 
         // Schreiben in die Datenbank
-        echo "Keine Fehler - Eintrag wird in Datenbank gespeichert";
+        echo "\nKeine Fehler - Eintrag wird in Datenbank gespeichert";
         $_sql = 'INSERT INTO gaestebuch
                      (ersteller,titel,beitrag,datum)
                        VALUES (
@@ -58,12 +56,19 @@
                      NOW());';
 
         mysqli_query($link, $_sql);
-        echo "<b>Danke für Ihren Eintrag.</b><br><br>";
+        echo "<br><b>Danke für Ihren Eintrag.</b><br><br>";
     }
 ?>
 
 <!-- Lesen aus der Datenbank -->
 <b>Alle Gästebucheinträge: </b><br><br>
+<form action="gaestebuch.php" method="post">
+    Ihr Name: <input type="text" name="ersteller" maxlength="30"><br>
+    Titel des Beitrags: <input type="text" name="titel" maxlength="100"><br>
+    Ihr Gästebucheintrag: <br>
+    <textarea name="beitrag" cols="50" rows="5"></textarea><br>
+    <input type="submit" name="submit" value="Eintragen">
+</form>
 
 <?php
 $_sql = "SELECT * FROM gaestebuch ORDER BY datum ASC";
@@ -79,13 +84,6 @@ while ($row = mysqli_fetch_array($_res, MYSQLI_ASSOC)) {
 }
 ?>
 
-<form action="gaestebuch.php" method="post">
-    Ihr Name: <input type="text" name="ersteller" maxlength="30"><br>
-    Titel des Beitrags: <input type="text" name="titel" maxlength="100"><br>
-    Ihr Gästebucheintrag: <br>
-    <textarea name="beitrag" cols="50" rows="5"></textarea><br>
-    <input type="submit" name="submit" value="Eintragen">
-</form>
 
 <?php
 mysqli_close($link);
